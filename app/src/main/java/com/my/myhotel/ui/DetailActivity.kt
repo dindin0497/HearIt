@@ -1,6 +1,5 @@
 package com.my.myhotel.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -8,9 +7,11 @@ import android.view.View
 import com.my.myhotel.*
 import kotlinx.android.synthetic.main.activity_detail.*
 
+/**
+ * hotel detail information Activity
+ */
 class DetailActivity : AppCompatActivity() {
     val TAG = DetailActivity::class.java.simpleName
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

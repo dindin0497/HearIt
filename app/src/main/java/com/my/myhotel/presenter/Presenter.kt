@@ -1,4 +1,4 @@
-package com.my.myhotel
+package com.my.myhotel.presenter
 
 import android.util.Log
 import com.my.myhotel.api.ApiClient
@@ -7,25 +7,27 @@ import com.my.myhotel.model.HotelResult
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class Presenter{
+/**
+ * presenter implementer
+ * connect view and model
+ */
+class Presenter : IPresenter{
 
-    val TAG =Presenter::class.java.simpleName
+    val TAG = Presenter::class.java.simpleName
 
     private val hotels : MutableList<Hotel> = ArrayList()
 
     protected val apiClient: ApiClient = ApiClient()
 
-    private var updateSet : MutableSet<onUpdateLisener> = HashSet()
+    private var updateSet : MutableSet<IPresenter.onUpdateLisener> = HashSet()
 
-    private var loading = false
+    private var loading : Boolean = false
 
 
-    interface onUpdateLisener{
-        fun onSuccess()
-        fun onError(str: String )
-    }
-
-    fun loadHotel()
+    /**
+     * load hotel data
+     */
+    override fun loadData()
     {
         loading=true
         apiClient.service.getList()
@@ -37,17 +39,32 @@ class Presenter{
                 )
     }
 
-    fun isLoading() = loading
+    /**
+     * is loading data
+     */
+    override fun isLoading() = loading
 
-    fun register(listener: onUpdateLisener) = updateSet.add(listener)
+    /**
+     * register for data load observer
+     */
+    override fun register(listener: IPresenter.onUpdateLisener) = updateSet.add(listener)
 
-    fun unRegister(listener: onUpdateLisener) = updateSet.remove(listener)
+    /**
+     * unregister for data load observer
+     */
+    override fun unRegister(listener: IPresenter.onUpdateLisener) = updateSet.remove(listener)
 
-    fun getSize(): Int{
+    /**
+     * get hotel list size
+     */
+    override fun getSize(): Int{
         return hotels.size
     }
 
-    fun getItem(idx : Int): Hotel{
+    /**
+     * get a hotel item
+     */
+    override fun getItem(idx : Int): Hotel{
         return hotels[idx]
     }
 

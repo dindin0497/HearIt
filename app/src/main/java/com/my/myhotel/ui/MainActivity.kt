@@ -7,18 +7,22 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.my.myhotel.App
-import com.my.myhotel.Presenter
+import com.my.myhotel.presenter.Presenter
 import com.my.myhotel.R
 import com.my.myhotel.RecyclerAdapter
+import com.my.myhotel.presenter.IPresenter
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), Presenter.onUpdateLisener {
+/**
+ * hotel list Activity
+ */
+class MainActivity : AppCompatActivity(), IPresenter.onUpdateLisener {
     val TAG = MainActivity::class.java.simpleName
 
     var adapter: RecyclerAdapter? = null
 
-    var presenter: Presenter? = null
+    var presenter: IPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity(), Presenter.onUpdateLisener {
         recycler.adapter = adapter
 
         if (presenter?.getSize()==0)
-            presenter?.loadHotel()
+            presenter?.loadData()
 
     }
 

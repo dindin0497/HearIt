@@ -1,25 +1,19 @@
 package com.my.myhotel
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
 import kotlinx.android.synthetic.main.list_item.view.*
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.my.myhotel.ui.DetailActivity
-import kotlinx.android.synthetic.main.activity_detail.*
+import com.my.myhotel.presenter.IPresenter
 
-
-class RecyclerAdapter (val context: Context, val presenter: Presenter) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+/**
+ * recyclerview Adapter
+ */
+class RecyclerAdapter (val context: Context, val presenter: IPresenter) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     val TAG=RecyclerAdapter::class.java.simpleName
 

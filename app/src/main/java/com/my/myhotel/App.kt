@@ -1,10 +1,10 @@
 package com.my.myhotel
 
 import android.app.Application
-import com.my.myhotel.api.ApiClient
+import com.my.myhotel.presenter.IPresenter
+import com.my.myhotel.presenter.Presenter
 
 class App : Application() {
-    val presenter = Presenter()
-
+    val presenter : IPresenter = Presenter()
 
 }
