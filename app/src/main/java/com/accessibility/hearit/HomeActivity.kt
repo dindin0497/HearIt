@@ -1,0 +1,91 @@
+package com.accessibility.hearit
+
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.speech.RecognizerIntent
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import android.speech.RecognitionListener
+import android.speech.SpeechRecognizer
+import android.util.Log
+import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.asLiveData
+
+class HomeActivity : AppCompatActivity() {
+
+    private val TAG = "HomeActivity"
+    private val RECORD_AUDIO_REQUEST_CODE = 1
+
+    var str=""
+
+    private val handler by lazy { android.os.Handler(mainLooper) }
+
+    lateinit var converter: SpeechToText
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+
+        converter  = RealSpeechToText(this.application)
+
+        val tv = findViewById<TextView>(R.id.tv)
+
+        converter.text.asLiveData().observe(this) { txt ->
+            str+=txt
+           tv.text = str
+        }
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_AUDIO_REQUEST_CODE
+            )
+        } else {
+            startListening()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Log.d(TAG, "onRequestPermissionsResult")
+        if (requestCode == RECORD_AUDIO_REQUEST_CODE &&
+            grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startListening()
+        } else {
+            Toast.makeText(this, "Microphone permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+    private fun startListening() {
+        Log.d(TAG, "startListening")
+        converter.start()
+    }
+
+    private fun restartListening() {
+        Log.d(TAG, "restartListening")
+
+
+        // Small delay prevents ERROR_RECOGNIZER_BUSY
+        handler.postDelayed({
+            startListening()
+        }, 350)
+    }
+
+
+
+    override fun onDestroy() {
+        Log.d(TAG, "onDestroy")
+        converter.stop()
+        super.onDestroy()
+    }
+}
