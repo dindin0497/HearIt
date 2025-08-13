@@ -1,5 +1,6 @@
 package com.accessibility.hearit
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -22,23 +23,32 @@ class RealSpeechToText(context: Context) : SpeechToText {
 
   val TAG="RealSpeechToText"
 
+
   private val speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context).apply {
     setRecognitionListener(object : RecognitionListener {
       override fun onReadyForSpeech(p0: Bundle?) = Unit
       override fun onBeginningOfSpeech() = Unit
       override fun onRmsChanged(p0: Float) = Unit
       override fun onBufferReceived(p0: ByteArray?) = Unit
-      override fun onEndOfSpeech() = Unit
-      override fun onResults(results: Bundle?) = Unit
+      override fun onEndOfSpeech() {
+          Log.d(TAG, "onEndOfSpeech")
+      }
+      override fun onResults(results: Bundle?) {
+        Log.d(TAG, "onResults")
+        val partial = results
+          ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+          ?.getOrNull(0) ?: ""
+        //text.value = partial
+        //start()
+      }
       override fun onEvent(p0: Int, p1: Bundle?) = Unit
 
       override fun onPartialResults(results: Bundle?) {
         val partial = results
           ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-          ?.getOrNull(0) ?: ""
 
         Log.d(TAG, "onPartialResult: $partial")
-        text.value = partial
+        //text.value = partial
       }
 
       override fun onError(error: Int) {
@@ -68,14 +78,13 @@ class RealSpeechToText(context: Context) : SpeechToText {
       RecognizerIntent.EXTRA_LANGUAGE_MODEL,
       RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
     )
-    putExtra(
-      RecognizerIntent.EXTRA_LANGUAGE,
-      Locale.US
-    )
-    putExtra(
-      RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS,
-      5000
-    )
+    putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+    putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, false)
+
+    putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
+    putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+    putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 800)
+    putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 5000)
   }
 
 

@@ -5,6 +5,18 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+
+    <color name="red_600">#D32F2F</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Blues/Greys for secondary -->
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="blue_grey_400">#78909C</color>
+
+    <!-- Surfaces (M3-ish neutrals) -->
+    <color name="surface_light">#FFFFFFFF</color>
+    <color name="on_surface_light">#1F1F1F</color>
+    <color name="surface_dark">#121212</color>
+    <color name="on_surface_dark">#ECECEC</color>
 </resources>

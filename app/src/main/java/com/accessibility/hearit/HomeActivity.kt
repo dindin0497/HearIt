@@ -1,14 +1,10 @@
 package com.accessibility.hearit
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.speech.RecognizerIntent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.speech.RecognitionListener
-import android.speech.SpeechRecognizer
 import android.util.Log
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -36,8 +32,7 @@ class HomeActivity : AppCompatActivity() {
         val tv = findViewById<TextView>(R.id.tv)
 
         converter.text.asLiveData().observe(this) { txt ->
-            str+=txt
-           tv.text = str
+           tv.text = txt
         }
 
 
