@@ -13,3 +13,7 @@ It is designed to assist people with **hearing loss** by providing **live captio
 - **Simple Interface** – Designed for quick access with minimal interaction.
 
 ---
+
+
+https://github.com/user-attachments/assets/4b5c9285-5e84-4047-9aa2-f8365b67e1bc
+
