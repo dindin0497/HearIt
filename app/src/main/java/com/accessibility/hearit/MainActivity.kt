@@ -105,7 +105,6 @@ class MainActivity : AppCompatActivity() {
             audioRecord!!.startRecording()
             recordButton.setText(R.string.stop)
             isRecording = true
-//            textView.text = ""
             idx = 0
 
             adapter.clear()
