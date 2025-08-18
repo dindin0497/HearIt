@@ -16,8 +16,6 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "HomeActivity"
     private val RECORD_AUDIO_REQUEST_CODE = 1
 
-    var str=""
-
     private val handler by lazy { android.os.Handler(mainLooper) }
 
     lateinit var converter: SpeechToText
@@ -59,24 +57,10 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun startListening() {
         Log.d(TAG, "startListening")
         converter.start()
     }
-
-    private fun restartListening() {
-        Log.d(TAG, "restartListening")
-
-
-        // Small delay prevents ERROR_RECOGNIZER_BUSY
-        handler.postDelayed({
-            startListening()
-        }, 350)
-    }
-
-
 
     override fun onDestroy() {
         Log.d(TAG, "onDestroy")
