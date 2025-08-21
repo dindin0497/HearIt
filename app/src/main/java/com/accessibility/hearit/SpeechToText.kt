@@ -1,6 +1,5 @@
 package com.accessibility.hearit
 
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +9,6 @@ import android.speech.SpeechRecognizer
 import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import java.util.Locale
 
 interface SpeechToText {
   val text: StateFlow<String>
