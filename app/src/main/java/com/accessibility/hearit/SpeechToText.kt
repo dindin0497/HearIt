@@ -36,8 +36,6 @@ class RealSpeechToText(context: Context) : SpeechToText {
         val partial = results
           ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
           ?.getOrNull(0) ?: ""
-        //text.value = partial
-        //start()
       }
       override fun onEvent(p0: Int, p1: Bundle?) = Unit
 
