@@ -225,10 +225,5 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun addText(text: String) {
-        adapter.addItem(text)
-        recyclerView.post {
-            recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
-        }
-    }
+
 }
