@@ -108,33 +108,6 @@ fun getDecoderConfig(method: String, numActivePaths: Int): DecoderConfig {
     return DecoderConfig(method = method, numActivePaths = numActivePaths)
 }
 
-
-/*
-@param type
-0 - https://huggingface.co/csukuangfj/sherpa-ncnn-2022-09-30
-    This model supports only Chinese
-
-1 - https://huggingface.co/csukuangfj/sherpa-ncnn-conv-emformer-transducer-2022-12-06
-    This model supports both English and Chinese
-
-2 - https://huggingface.co/csukuangfj/sherpa-ncnn-streaming-zipformer-bilingual-zh-en-2023-02-13
-    This model supports both English and Chinese
-
-3 - https://huggingface.co/csukuangfj/sherpa-ncnn-streaming-zipformer-en-2023-02-13
-    This model supports only English
-
-4 - https://huggingface.co/shaojieli/sherpa-ncnn-streaming-zipformer-fr-2023-04-14
-    This model supports only French
-
-5 - https://github.com/k2-fsa/sherpa-ncnn/releases/download/models/sherpa-ncnn-streaming-zipformer-zh-14M-2023-02-23.tar.bz2
-    This is a small model and supports only Chinese
-6 - https://github.com/k2-fsa/sherpa-ncnn/releases/download/models/sherpa-ncnn-streaming-zipformer-small-bilingual-zh-en-2023-02-16.tar.bz2
-    This is a medium model and supports only Chinese
-
-Please follow
-https://k2-fsa.github.io/sherpa/ncnn/pretrained_models/index.html
-to add more pre-trained models
- */
 fun getModelConfig(type: Int, useGPU: Boolean): ModelConfig? {
     when (type) {
         0 -> {
