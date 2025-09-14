@@ -147,8 +147,6 @@ class MainActivity : AppCompatActivity() {
 
                 val isEndpoint = model.isEndpoint()
                 val text = model.text.toLowerCase()
-                var textToDisplay = lastText
-                var insert = true
 
                 if (isEndpoint) {
                     model.reset()
