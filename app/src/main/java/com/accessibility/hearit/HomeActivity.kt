@@ -16,8 +16,6 @@ class HomeActivity : AppCompatActivity() {
     private val TAG = "HomeActivity"
     private val RECORD_AUDIO_REQUEST_CODE = 1
 
-    private val handler by lazy { android.os.Handler(mainLooper) }
-
     lateinit var converter: SpeechToText
 
 
@@ -63,7 +61,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        Log.d(TAG, "onDestroy")
         converter.stop()
         super.onDestroy()
     }
