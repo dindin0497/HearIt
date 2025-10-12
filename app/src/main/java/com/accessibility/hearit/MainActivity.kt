@@ -222,6 +222,4 @@ class MainActivity : AppCompatActivity() {
             config = config,
         )
     }
-
-
 }

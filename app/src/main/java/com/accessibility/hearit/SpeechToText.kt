@@ -44,7 +44,6 @@ class RealSpeechToText(context: Context) : SpeechToText {
           ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
 
         Log.d(TAG, "onPartialResult: $partial")
-        //text.value = partial
       }
 
       override fun onError(error: Int) {
