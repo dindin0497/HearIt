@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemAdapter(private val items: MutableList<String>) :
-    RecyclerView.Adapter<ItemAdapter.LogViewHolder>() {
-
-        val TAG = "ItemAdapter"
+    RecyclerView.Adapter<ItemAdapter.LogViewHolder>()
+{
+    val TAG = "ItemAdapter"
 
     class LogViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv: TextView = itemView.findViewById(R.id.tv)

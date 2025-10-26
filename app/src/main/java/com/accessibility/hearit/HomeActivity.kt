@@ -54,13 +54,13 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun startListening() {
-        Log.d(TAG, "startListening")
-        converter.start()
-    }
-
     override fun onDestroy() {
         converter.stop()
         super.onDestroy()
+    }
+
+    private fun startListening() {
+        Log.d(TAG, "startListening")
+        converter.start()
     }
 }
