@@ -49,9 +49,9 @@ class HomeActivity : AppCompatActivity() {
         if (requestCode == RECORD_AUDIO_REQUEST_CODE &&
             grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startListening()
-        } else {
+        } else
             Toast.makeText(this, "Microphone permission denied", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     override fun onDestroy() {
