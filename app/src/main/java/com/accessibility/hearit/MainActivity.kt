@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
-    private var counter = 1
 
     @Volatile
     private var isRecording: Boolean = false
