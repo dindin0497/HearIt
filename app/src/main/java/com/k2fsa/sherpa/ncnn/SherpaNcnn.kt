@@ -62,7 +62,6 @@ class SherpaNcnn(
 
     fun decode() = decode(ptr)
 
-    fun inputFinished() = inputFinished(ptr)
     fun isEndpoint(): Boolean = isEndpoint(ptr)
     fun reset(recreate: Boolean = false) = reset(ptr, recreate = recreate)
 
